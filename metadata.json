@@ -1,0 +1,6 @@
+{
+  "name": "느와르갤러리",
+  "description": "프리미엄 아트 갤러리 및 문화예술 지원 플랫폼",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
