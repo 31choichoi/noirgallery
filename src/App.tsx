@@ -282,7 +282,7 @@ export default function App() {
               <div className="aspect-[3/4] relative overflow-hidden bg-[#222] mb-4">
                 <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity z-10"></div>
                 <img 
-                  src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800&auto=format&fit=crop" 
+                  src="https://mydrim.net/img/05161.png" 
                   alt="Nam June Paik" 
                   className="w-full h-full object-cover"
                 />
@@ -307,7 +307,7 @@ export default function App() {
               <div className="aspect-[3/4] relative overflow-hidden bg-[#1a1205] mb-4">
                 <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity z-10"></div>
                 <img 
-                  src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=800&auto=format&fit=crop" 
+                  src="https://mydrim.net/img/05162.png" 
                   alt="Gleam" 
                   className="w-full h-full object-cover"
                 />
@@ -333,7 +333,7 @@ export default function App() {
               <div className="aspect-[3/4] relative overflow-hidden bg-[#180a00] mb-4">
                 <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity z-10"></div>
                 <img 
-                  src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?q=80&w=800&auto=format&fit=crop" 
+                  src="https://mydrim.net/img/05163.png" 
                   alt="Bloom" 
                   className="w-full h-full object-cover"
                 />
