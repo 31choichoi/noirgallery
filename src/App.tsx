@@ -108,6 +108,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<TabType>('프로그램');
   const [lang, setLang] = useState<'KOR' | 'ENG'>('KOR');
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -192,12 +193,81 @@ export default function App() {
           </div>
         </nav>
 
-        {/* Mobile menu icon (visual only) */}
-        <div className="md:hidden flex flex-col gap-1 cursor-pointer">
-          <span className="w-6 h-[2px] bg-[#111]"></span>
-          <span className="w-6 h-[2px] bg-[#111]"></span>
-          <span className="w-6 h-[2px] bg-[#111]"></span>
-        </div>
+        {/* Mobile menu icon */}
+        <button 
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="md:hidden flex flex-col gap-1 cursor-pointer z-50 p-2"
+          aria-label="Toggle menu"
+        >
+          <motion.span 
+            animate={isMenuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+            className="w-6 h-[2px] bg-[#111]"
+          ></motion.span>
+          <motion.span 
+            animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+            className="w-6 h-[2px] bg-[#111]"
+          ></motion.span>
+          <motion.span 
+            animate={isMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+            className="w-6 h-[2px] bg-[#111]"
+          ></motion.span>
+        </button>
+
+        {/* Mobile menu overlay and content */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <>
+              {/* Dark Overlay */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setIsMenuOpen(false)}
+                className="fixed inset-0 bg-black/50 z-40 md:hidden"
+              />
+              {/* Sliding Menu - 50% width as requested */}
+              <motion.div
+                initial={{ x: '100%' }}
+                animate={{ x: 0 }}
+                exit={{ x: '100%' }}
+                transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                className="fixed top-0 right-0 h-full w-[60%] sm:w-[50%] bg-white z-40 md:hidden shadow-2xl pt-[100px] px-8"
+              >
+                <nav className="flex flex-col gap-8">
+                  {[
+                    { name: '갤러리소개', href: '#main' },
+                    { name: '전시실적', href: '#exhibitions' },
+                    { name: '주요사업', href: '#projects' },
+                    { name: '커뮤니티', href: '#news' }
+                  ].map((item) => (
+                    <a 
+                      key={item.name} 
+                      href={item.href} 
+                      onClick={() => setIsMenuOpen(false)}
+                      className="text-xl font-bold text-[#111] no-underline hover:text-[#e63312]"
+                    >
+                      {item.name}
+                    </a>
+                  ))}
+                  <div className="flex items-center border border-[#ccc] rounded-sm overflow-hidden text-[11px] font-medium mt-4 w-fit">
+                    <button 
+                      onClick={() => { setLang('KOR'); setIsMenuOpen(false); }}
+                      className={`px-3 py-1 transition-colors ${lang === 'KOR' ? 'bg-[#111] text-white' : 'text-[#555]'}`}
+                    >
+                      KOR
+                    </button>
+                    <button 
+                      onClick={() => { setLang('ENG'); setIsMenuOpen(false); }}
+                      className={`px-3 py-1 transition-colors ${lang === 'ENG' ? 'bg-[#111] text-white' : 'text-[#555]'}`}
+                    >
+                      ENG
+                    </button>
+                  </div>
+                </nav>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
       </header>
 
       <main className="flex-1 pt-[60px]">
